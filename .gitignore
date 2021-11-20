@@ -1,0 +1,6 @@
+crypto-101-332715-5324773fbd10.json
+k8s-crypto/objects/*.csv
+*.terraform
+.terraform.*
+aux.txt
+venv_crypto101
