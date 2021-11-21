@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mongodb
+  namespace: argocd 
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/GodisD/DE-crypto-project.git
+    targetRevision: HEAD
+    path: k8s-crypto/charts/mongodb
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mongodb
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
