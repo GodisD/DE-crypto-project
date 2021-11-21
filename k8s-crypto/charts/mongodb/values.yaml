@@ -146,15 +146,15 @@ auth:
   ## @param auth.passwords List of passwords for the custom users set at `auth.usernames`
   ## @param auth.databases List of custom databases to be created during the initialization
   ##
-  usernames: [${{ secrets.MONGO_USERNAMES }}]
-  passwords: [${{ secrets.MONGO_PASSWORDS }}]
-  databases: ["admin", "config", "local", "teste"]
+  usernames: []
+  passwords: []
+  databases: []
   ## @param auth.username DEPRECATED: use `auth.usernames` instead
   ## @param auth.password DEPRECATED: use `auth.passwords` instead
   ## @param auth.database DEPRECATED: use `auth.databases` instead
-  username: ""
-  password: ""
-  database: ""
+  username: ${{ secrets.MONGO_USERNAMES }}
+  password: ${{ secrets.MONGO_PASSWORDS }}
+  database: "admin"
   ## @param auth.replicaSetKey Key used for authentication in the replicaset (only when `architecture=replicaset`)
   ##
   replicaSetKey: ""
