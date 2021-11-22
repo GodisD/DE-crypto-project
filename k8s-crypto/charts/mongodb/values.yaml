@@ -132,7 +132,7 @@ auth:
   ## @param auth.enabled Enable authentication
   ## ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/
   ##
-  enabled: true
+  enabled: false
   ## @param auth.rootUser MongoDB&reg; root user
   ##
   rootUser: root
@@ -152,9 +152,9 @@ auth:
   ## @param auth.username DEPRECATED: use `auth.usernames` instead
   ## @param auth.password DEPRECATED: use `auth.passwords` instead
   ## @param auth.database DEPRECATED: use `auth.databases` instead
-  username: 
-  password: 
-  database: 
+  # username: 
+  # password: 
+  # database: 
   ## @param auth.replicaSetKey Key used for authentication in the replicaset (only when `architecture=replicaset`)
   ##
   replicaSetKey: ""
