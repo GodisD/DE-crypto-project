@@ -152,8 +152,8 @@ auth:
   ## @param auth.username DEPRECATED: use `auth.usernames` instead
   ## @param auth.password DEPRECATED: use `auth.passwords` instead
   ## @param auth.database DEPRECATED: use `auth.databases` instead
-  username: ${{ secrets.MONGO_USERNAMES }}
-  password: ${{ secrets.MONGO_PASSWORDS }}
+  username: "admin"
+  password: "admin"
   database: "admin"
   ## @param auth.replicaSetKey Key used for authentication in the replicaset (only when `architecture=replicaset`)
   ##

@@ -1,5 +1,6 @@
 crypto-101-332715-5324773fbd10.json
 k8s-crypto/objects/*.csv
+k8s-crypto/objects/credentials.py
 *.terraform
 .terraform.*
 aux.txt
