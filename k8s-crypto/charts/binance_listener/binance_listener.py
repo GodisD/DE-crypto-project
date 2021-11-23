@@ -1,8 +1,14 @@
 import sys
-from credentials import API_KEY, API_SECRET, MONGO_USER, MONGO_PASSWORD
+import os 
 from binance import ThreadedWebsocketManager
 from binance.client import Client
 from pymongo import MongoClient
+
+API_KEY = os.get_env('API_KEY')
+API_SECRET = os.get_env('API_SECRET')
+MONGO_USER = os.get_env('MONGO_USER')
+MONGO_PASSWORD = os.get_env('MONGO_PASSWORD')
+
 
 class BinanceListener:
 
