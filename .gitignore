@@ -5,3 +5,4 @@ k8s-crypto/objects/credentials.py
 .terraform.*
 aux.txt
 venv_crypto101
+*.pc
