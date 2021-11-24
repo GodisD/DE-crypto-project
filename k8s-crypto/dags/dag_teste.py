@@ -1,6 +1,7 @@
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+from airflow.utils.dates import days_ago
 
 default_args = {
     'owner': 'airflow',
@@ -13,16 +14,13 @@ with DAG(
     'teste',
     default_args=default_args,
     description='teste dag',
-    schedule_interval=timedelta(days=1),
-    start_date=datetime(2021, 11, 19),
+    schedule_interval=days_ago(1),
+    start_date=datetime(2021, 11, 22),
     catchup=False,
     tags=['teste'],
 ) as dag:
 
     t1 = BashOperator(
         task_id='print_date',
-        bash_command='echo ARROZ',
+        bash_command='date'
     )
-
-
-     
