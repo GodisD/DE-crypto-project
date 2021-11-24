@@ -6,3 +6,4 @@ k8s-crypto/objects/credentials.py
 aux.txt
 venv_crypto101
 *.pc
+k8s-crypto/charts/binance_listener/__pycache__/*
