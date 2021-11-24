@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.8
 
 RUN mkdir /app
 WORKDIR /app
@@ -6,4 +6,4 @@ ADD . /app/
 RUN pip install -r requirements.txt
 
 EXPOSE 5000
-CMD ["python", "/app/main.py", "BTCUSDT"]
+CMD ["python", "/app/binance_listener.py", "BTCUSDT"]

@@ -4,10 +4,10 @@ from binance import ThreadedWebsocketManager
 from binance.client import Client
 from pymongo import MongoClient
 
-API_KEY = os.get_env('API_KEY')
-API_SECRET = os.get_env('API_SECRET')
-MONGO_USER = os.get_env('MONGO_USER')
-MONGO_PASSWORD = os.get_env('MONGO_PASSWORD')
+API_KEY = os.getenv('API_KEY')
+API_SECRET = os.getenv('API_SECRET')
+MONGO_USER = os.get_env('MONGO_HOSTNAME')
+
 
 
 class BinanceListener:
@@ -16,7 +16,7 @@ class BinanceListener:
         self.streams = []
         self.symbols = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'BNBUSDT']
         self.client = Client(API_KEY, API_SECRET)
-        self.mongo_client = MongoClient(f'mongodb://localhost:27017')
+        self.mongo_client = MongoClient(f'mongodb://mongodb-697b6f857c-fwnhn.mongodb:27017')
         # mongo_client = MongoClient(f'mongodb://crypto:mongopass220694@localhost:27017/cryptodb')
 
         try: 
@@ -38,24 +38,21 @@ class BinanceListener:
 
 
     def _handle_socket_message(self, msg):
-        # symbol = msg['s']
-        # call_type = msg['r']
-
-        symbol = 'teste'
-        call_type = 'teste'
+        stream = msg['stream']
+        symbol = stream.split('@')[0]
         
         db = self.mongo_client["spot"]
-        col = db[f'{symbol}_{call_type}']
+        col = db[f'{symbol}_{stream}']
         col.insert_one(msg)
         print('inserted spot')
 
 
     def _handle_futures_socket_message(self, msg):
-        symbol = 'teste'
-        call_type = 'teste'
+        stream = msg['stream']
+        symbol = stream.split('@')[0]
         
         db = self.mongo_client["futures"]
-        col = db[f'{symbol}_{call_type}']
+        col = db[f'{symbol}_{stream}']
         col.insert_one(msg)
         print('inserted futures')
     

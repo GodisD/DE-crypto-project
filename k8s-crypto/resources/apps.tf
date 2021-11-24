@@ -54,3 +54,16 @@ resource "kubectl_manifest" "mongodb" {
   yaml_body          = element(data.kubectl_file_documents.mongodb.documents, count.index)
   override_namespace = "argocd"
 }
+
+data "kubectl_file_documents" "binancelistener" {
+  content = file("../apps/binance-listener-app.yaml")
+}
+
+resource "kubectl_manifest" "binancelistener" {
+  depends_on = [
+    kubectl_manifest.argocd,
+  ]
+  count              = length(data.kubectl_file_documents.binancelistener.documents)
+  yaml_body          = element(data.kubectl_file_documents.binancelistener.documents, count.index)
+  override_namespace = "argocd"
+}
