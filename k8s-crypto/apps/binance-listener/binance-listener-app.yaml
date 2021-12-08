@@ -1,20 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: binancelistener
----
-  ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: creds
-  namespace: binancelistener
-type: Opaque
-data:
-  api-key: dkF6a2tMUXBndkJjWERaMzBRWWNrZVJNeTNLYVgzbnBlTnowSWVoQURWR3lYUnkzN3N0bENLbFg5OWExcjZLdA==
-  api-secret: czRha3Q0V1VqdGhwMEk4ZndPZjcwRUlhMTVwOEt1Wm0yTHRNZlpJRTQzeXRtcm93aEUxUVdyUjVTQ3c5NzhRMw==
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -41,12 +25,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: creds
-              key: api_key
+              key: api-key
         - name: API_SECRET
           valueFrom:
             secretKeyRef:
               name: creds
-              key: api_secret
+              key: api-secret
         - name: MONGODB_HOSTNAME
           value: mongodb-697b6f857c-fwnhn.mongodb
         - name: MONGODB_PORT
