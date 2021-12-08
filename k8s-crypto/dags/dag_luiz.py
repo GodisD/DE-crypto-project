@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.bash import BashOperator, PythonVirtualenvOperator
+from airflow.operators.python_operator import PythonVirtualenvOperator
 from airflow.utils.dates import days_ago
 import requests
 
@@ -18,7 +18,7 @@ headers = {
         }
 
 
-def check_https(url):
+def check_https(url, **kwargs):
     response_code = {}
     if isinstance(url, str):
         if url.split('/')[0] in ['https:', 'http:']:
@@ -55,6 +55,7 @@ with DAG(
     task_id="check_https",
     python_callable=check_https,
     requirements=["requests"],
+    op_kwargs={'url':'google.com'},
     system_site_packages=True,
 )
 
